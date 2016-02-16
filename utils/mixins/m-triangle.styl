@@ -1,0 +1,32 @@
+m-triangle($direction, $color, $sizes, $darken = false)
+    if length($sizes) is 1
+        $height = $sizes
+        $width = $sizes
+    else
+        $height = $sizes[0]
+        $width = $sizes[1]
+
+    if $darken is true
+        $color = darken($color, 10)
+
+    if $direction is "left"
+        border-bottom: unit($height, px) solid transparent
+        border-right: unit($width, px) solid $color
+        border-top: unit($height, px) solid transparent
+    else if $direction is "right"
+        border-bottom: unit($height, px) solid transparent
+        border-left : unit($width, px) solid $color
+        border-top: unit($height, px) solid transparent
+    else if $direction is "up"
+        border-bottom: unit($height, px) solid $color
+        border-left: unit($width, px) solid transparent
+        border-right: unit($width, px) solid transparent
+    else if $direction is "down"
+        border-right: unit($width, px) solid transparent
+        border-left: unit($width, px) solid transparent
+        border-top: unit($height, px) solid $color
+
+    content: " "
+    height: 0
+    position: absolute
+    width: 0
