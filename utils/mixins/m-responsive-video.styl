@@ -1,0 +1,13 @@
+m-responsive-video($value = "16-9")
+    height: 0
+    padding-bottom: $ratio + "-" + $value
+    padding-top: 25px
+    position: relative
+    > iframe,
+    > video,
+    > object
+        height: 100%
+        left: 0
+        position: absolute
+        top: 0
+        width: 100%
