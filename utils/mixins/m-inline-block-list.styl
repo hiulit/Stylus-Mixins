@@ -1,0 +1,10 @@
+m-inline-block-list($font-value, $margin-value = 0)
+  font-size: 0
+  line-height: 0 
+  if $margin-value != 0
+    margin-left: (- $margin-value)
+  > li
+    display: inline-block
+    m-font-size($font-value)
+    if $margin-value != 0
+      margin-left: $margin-value
