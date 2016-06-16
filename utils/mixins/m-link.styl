@@ -1,0 +1,13 @@
+m-link($link-color, $link-hover-color, $text-decoration = "false/true")
+    color: $link-color
+    text-decoration: none
+    &:active,
+    &:visited,
+    &:link
+        color: $link-color
+    &:hover
+        color: $link-hover-color
+        if $text-decoration is "false/true"
+            text-decoration: underline
+        if $text-decoration is false
+            text-decoration: none
