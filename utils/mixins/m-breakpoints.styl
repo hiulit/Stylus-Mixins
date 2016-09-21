@@ -2,8 +2,20 @@
 // http://stylus-lang.com/docs/mixins.html#block-mixins
 m-breakpoint($values)
     if length($values) is 1
-        @media screen and (min-width: $breakpoints[$values[0]])
-            {block}
-    else
-        @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]])
+        if $values[0] is "landscape" or $values[0] is "portrait"
+            @media screen and (orientation: $values[0])
+                {block}
+        else
+            @media screen and (min-width: $breakpoints[$values[0]])
+                {block}
+    else if length($values) is 2
+        if $values[1] is "landscape" or $values[1] is "portrait"
+            @media screen and (min-width: $breakpoints[$values[0]]) and (orientation: $values[1])
+                {block}
+        else
+            @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]])
+                {block}
+
+    else if length($values) is 3
+        @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]]) and (orientation: $values[2])
             {block}
