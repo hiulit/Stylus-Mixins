@@ -4,6 +4,8 @@
 // Don't use commas as separator, just blank spaces.
 // Don't use quotes.
 //
+// The key order must be: "min-width" "max-width" "orientation"
+//
 // Examples:
 // +m-breakpoint(md)
 // +m-breakpoint(md portrait)
@@ -14,7 +16,7 @@ m-breakpoint($values)
 
     for $value in $values
         unless $value in $breakpoints or $value is "landscape" or $value is "portrait"
-            warn("\n\nOne ore more m-breakpoint() mixins failed to compile. You must enter 1 or 2 of these valid keys: \n'" + keys($breakpoints) + "'.\n\n'landscape' and 'portrait' are also valid keys if they are preceded by 1 or 2 of the previously mentioned keys.\n\nRemember:\n - Block mixins should be prefixed with '+' (e.g. '+m-breakpoints()').\n - Don't use commas as separator, just blank spaces.\n - Don't use quotes.\n")
+            warn("\n\nOne ore more m-breakpoint() mixins failed to compile. You must enter 1 or 2 of these valid keys: \n'" + keys($breakpoints) + "'.\n\n'landscape' and 'portrait' are also valid keys if they are preceded by 1 or 2 of the previously mentioned keys.\n\nRemember:\n - Block mixins should be prefixed with '+' (e.g. '+m-breakpoints()').\n - Don't use commas as separator, just blank spaces.\n - Don't use quotes.\n\nThe key order must be: 'min-width' 'max-width' 'orientation'.\n\nExample: +m-breakpoint(md lg landscape)\n")
 
     if $length is 1
         if $values[0] is "landscape" or $values[0] is "portrait"
