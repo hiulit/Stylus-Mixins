@@ -1,21 +1,35 @@
-// Remember that block mixins should be prefixed with "+" (e.g. "+m-breakpoints()")
+// Remember that block mixins should be prefixed with "+" (e.g. "+m-breakpoints()").
 // http://stylus-lang.com/docs/mixins.html#block-mixins
+//
+// Don't use commas as separator, just blank spaces.
+// Don't use quotes.
+//
+// Examples:
+// +m-breakpoint(md)
+// +m-breakpoint(md portrait)
+// +m-breakpoint(md lg)
+// +m-breakpoint(md lg landscape)
 m-breakpoint($values)
-    if length($values) is 1
+    $length = length($values)
+
+    for $value in $values
+        unless $value in $breakpoints or $value is "landscape" or $value is "portrait"
+            warn("\n\nOne ore more m-breakpoint() mixins failed to compile. You must enter 1 or 2 of these valid keys: \n'" + keys($breakpoints) + "'.\n\n'landscape' and 'portrait' are also valid keys if they are preceded by 1 or 2 of the previously mentioned keys.\n\nRemember:\n - Block mixins should be prefixed with '+' (e.g. '+m-breakpoints()').\n - Don't use commas as separator, just blank spaces.\n - Don't use quotes.\n")
+
+    if $length is 1
         if $values[0] is "landscape" or $values[0] is "portrait"
             @media screen and (orientation: $values[0])
                 {block}
         else
             @media screen and (min-width: $breakpoints[$values[0]])
                 {block}
-    else if length($values) is 2
+    if $length is 2
         if $values[1] is "landscape" or $values[1] is "portrait"
             @media screen and (min-width: $breakpoints[$values[0]]) and (orientation: $values[1])
                 {block}
         else
             @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]])
                 {block}
-
-    else if length($values) is 3
+    if $length is 3
         @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]]) and (orientation: $values[2])
             {block}
