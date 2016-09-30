@@ -9,6 +9,6 @@ m-font($font-family, $font-weight, $font-style, $fallback-fonts = "sans-serif")
         $font-weight = 700
     if $font-weight is "bolder"
         $font-weight = 900
-    font-family: $font-family, $fallback-fonts
-    font-style: $font-style
+    font-family: $font-family, unquote($fallback-fonts)
+    font-style: unquote($font-style)
     font-weight: $font-weight
