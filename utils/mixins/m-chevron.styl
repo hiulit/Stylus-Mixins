@@ -1,0 +1,25 @@
+m-chevron($sizes, $border, $color)
+    &:before
+        $border = unit($border, px)
+        
+        if length($sizes) is 1
+            $height = $sizes
+            $width = $sizes
+        else
+            $height = $sizes[0]
+            $width = $sizes[1]
+
+        border-color: $color
+        border-style: solid
+        border-width: $border $border 0 0
+        content: ""
+        display: inline-block
+        height: unit($height, px)
+        left: 50%
+        position: absolute
+        top: "calc(50% - %s)" % $border
+        transform-origin: left top
+        transform: rotate(135deg) translate(-50%, -50%)
+        transition: transform 0.25s ease-in-out, border-color 0.15s ease-in-out
+        vertical-align: top
+        width: unit($width, px)
