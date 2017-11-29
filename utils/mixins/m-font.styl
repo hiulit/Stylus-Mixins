@@ -1,0 +1,14 @@
+m-font($font-family, $font-weight, $font-style, $fallback-fonts = "sans-serif")
+    if $font-weight is "lighter"
+        $font-weight = 100
+    if $font-weight is "light"
+        $font-weight = 300
+    if $font-weight is "normal" or $font-weight is "regular"
+        $font-weight = 400
+    if $font-weight is "bold"
+        $font-weight = 700
+    if $font-weight is "bolder"
+        $font-weight = 900
+    font-family: $font-family, unquote($fallback-fonts)
+    font-style: unquote($font-style)
+    font-weight: $font-weight

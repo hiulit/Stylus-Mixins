@@ -1,0 +1,32 @@
+$directions = {
+    "up": rotate(-45deg) translate(-75%, 0%),
+    "down": rotate(135deg) translate(-50%, -50%),
+    "left": rotate(225deg) translate(-75%, -50%),
+    "right": rotate(405deg) translate(-50%, -25%)
+}
+
+m-chevron($direction, $sizes, $border, $color)
+    &:before
+        $border = unit($border, px)
+
+        if length($sizes) is 1
+            $height = $sizes
+            $width = $sizes
+        else
+            $height = $sizes[0]
+            $width = $sizes[1]
+
+        border-color: $color
+        border-style: solid
+        border-width: $border $border 0 0
+        content: ""
+        display: inline-block
+        height: unit($height, px)
+        left: 50%
+        position: absolute
+        top: "calc(50% - %s)" % $border
+        transform-origin: left top
+        transform: $directions[$direction]
+        transition: transform 0.25s ease-in-out, border-color 0.15s ease-in-out
+        vertical-align: top
+        width: unit($width, px)

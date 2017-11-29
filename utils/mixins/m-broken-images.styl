@@ -1,0 +1,13 @@
+m-broken-images()
+    &:after
+        background-color: #fff
+        color: red
+        content: "Broken image :_( \A\A ALT: '"attr(alt)"' \A SRC: '"attr(src)"'"
+        display: block
+        white-space: pre-line
+    &[alt]
+        &:after
+            content: "Broken image :_( \A\A ALT: 'It would be better if you write something meaningful in the alt attribute... But you can just leave it blank... \A SRC: '"attr(src)"'"
+    &:not([alt])
+        &:after
+            content: "Broken image :_( \A\A ALT: 'You must at least enter the alt attribute... Even if you leave it blank... \A SRC: '"attr(src)"'"

@@ -1,4 +1,7 @@
-m-center-block()
-    display: block
+m-center-block($display = "block")
+    if $display is a "string"
+        $display = unquote($display)
+
+    display: $display
     margin-left: auto
     margin-right: auto
