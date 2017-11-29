@@ -1,0 +1,21 @@
+m-inline-list($font-size = $base-font-size, $color = $base-font-color, $margin = $base-font-size, $separator = true)
+    display: flex
+    > li
+        color: $color
+        cursor: pointer
+        m-font-size($font-size)
+        &:not(:last-child)
+            margin-right: unit($margin, "px")
+            if $separator is true
+                &:after
+                    background-color: $color
+                    content: ""
+                    display: inline-block
+                    height: unit(($font-size + 4), "px")
+                    margin-left: unit($margin, "px")
+                    margin-top: -2px
+                    vertical-align: middle
+                    width: 1px
+        &.selected
+            font-weight: bold
+            cursor: default
